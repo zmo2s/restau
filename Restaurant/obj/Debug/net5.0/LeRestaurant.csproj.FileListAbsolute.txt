@@ -1,0 +1,16 @@
+C:\Users\Antonin\Desktop\restau\Restaurant\Restaurant\bin\Debug\net5.0\LeRestaurant.exe
+C:\Users\Antonin\Desktop\restau\Restaurant\Restaurant\bin\Debug\net5.0\LeRestaurant.deps.json
+C:\Users\Antonin\Desktop\restau\Restaurant\Restaurant\bin\Debug\net5.0\LeRestaurant.runtimeconfig.json
+C:\Users\Antonin\Desktop\restau\Restaurant\Restaurant\bin\Debug\net5.0\LeRestaurant.runtimeconfig.dev.json
+C:\Users\Antonin\Desktop\restau\Restaurant\Restaurant\bin\Debug\net5.0\LeRestaurant.dll
+C:\Users\Antonin\Desktop\restau\Restaurant\Restaurant\bin\Debug\net5.0\ref\LeRestaurant.dll
+C:\Users\Antonin\Desktop\restau\Restaurant\Restaurant\bin\Debug\net5.0\LeRestaurant.pdb
+C:\Users\Antonin\Desktop\restau\Restaurant\Restaurant\obj\Debug\net5.0\LeRestaurant.csproj.AssemblyReference.cache
+C:\Users\Antonin\Desktop\restau\Restaurant\Restaurant\obj\Debug\net5.0\LeRestaurant.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Antonin\Desktop\restau\Restaurant\Restaurant\obj\Debug\net5.0\LeRestaurant.AssemblyInfoInputs.cache
+C:\Users\Antonin\Desktop\restau\Restaurant\Restaurant\obj\Debug\net5.0\LeRestaurant.AssemblyInfo.cs
+C:\Users\Antonin\Desktop\restau\Restaurant\Restaurant\obj\Debug\net5.0\LeRestaurant.csproj.CoreCompileInputs.cache
+C:\Users\Antonin\Desktop\restau\Restaurant\Restaurant\obj\Debug\net5.0\LeRestaurant.dll
+C:\Users\Antonin\Desktop\restau\Restaurant\Restaurant\obj\Debug\net5.0\ref\LeRestaurant.dll
+C:\Users\Antonin\Desktop\restau\Restaurant\Restaurant\obj\Debug\net5.0\LeRestaurant.pdb
+C:\Users\Antonin\Desktop\restau\Restaurant\Restaurant\obj\Debug\net5.0\LeRestaurant.genruntimeconfig.cache
