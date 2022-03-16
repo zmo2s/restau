@@ -36,5 +36,20 @@ namespace LeRestaurant
             listesRestaurant.ForEach(element => chiffreAffaires += element.revenue());
             return chiffreAffaires;
         }
+
+        public void createRestaurant(int nbrServeur, int nbrRestaurant)
+        {
+            Client client;
+            Commande commande;
+            Serveur serv;
+            Restaurant restaurant;
+
+            for (int i = 0; i < nbrRestaurant; i++)
+            {
+                restaurant = new Restaurant("Henri" + i);
+                restaurant.createServeurs(nbrServeur);
+                listesRestaurant.Add(restaurant);
+            }
+        }
     }
 }

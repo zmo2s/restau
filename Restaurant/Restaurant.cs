@@ -9,11 +9,23 @@ namespace LeRestaurant
     public class Restaurant
     {
         public string nom { get; set; }
+        public bool service { get; set; }
+
+
         public double chiffreAffaires { get; set; }
         public List<Serveur> listServeur = new List<Serveur>();
+        public List<int> listTable = new List<int>();
+        public MaitreHotel maitreHotel = new MaitreHotel("Steph");
+
         public Restaurant(string nom)
         {
             this.nom = nom;
+        }
+
+        public Restaurant(string nom, bool service)
+        {
+            this.nom = nom;
+            this.service = service;
         }
 
         public Restaurant()
@@ -40,6 +52,36 @@ namespace LeRestaurant
             listServeur.ForEach(element => chiffreAffaires += element.revenue());
 
             return chiffreAffaires;
+        }
+
+        public void createServeurs(int nbrServeur)
+        {
+            Client client;
+            Commande commande;
+            Serveur serv;
+
+            for (int i = 0; i < nbrServeur; i++)
+            {
+                serv = new Serveur("Henri" + i);
+                listServeur.Add(serv);
+            }
+        }
+
+        public void implementeServeur(List<Commande> listCommande)
+        {
+            foreach (var element in listServeur)
+            {
+                element.listCommandes = listCommande;
+            }
+        }
+
+        public void startService(List<int> listTables)
+        {
+            service = true;
+            listTable = listTables;
+
+            this.maitreHotel.listTable = listTable;
+            // this.listTable = 
         }
     }
 }

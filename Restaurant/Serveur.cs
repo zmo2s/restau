@@ -12,6 +12,7 @@ namespace LeRestaurant
         public double chiffreAffaires { get; set; }
         public Commande commande { get; set; }
         public List<Commande> listCommandes = new List<Commande>();
+        public List<int> listTable = new List<int>();
         public Serveur()
         { }
         public Serveur(string nom)

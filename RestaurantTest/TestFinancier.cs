@@ -1,5 +1,6 @@
 using LeRestaurant;
 using System;
+using System.Collections.Generic;
 using Xunit;
 
 
@@ -120,6 +121,144 @@ namespace RestaurantTest
                 //alors
                 Assert.Equal(firstCommandePrice * 10 * 3, franchise.revenue());
             }
+
+
+            [Fact(DisplayName = "V4")]
+            void Serveur_RestaurantV2()
+            {
+                // Given
+                double firstCommandePrice = 100;
+                int nbrServeur = 10;
+
+                var restaurant = new Restaurant("Michelin");
+                restaurant.createServeurs(nbrServeur);
+
+
+
+                Client client = new Client("Srah");
+                List<Commande> commande = new List<Commande>();
+                commande.Add(new Commande(1, client, firstCommandePrice));
+
+                restaurant.implementeServeur(commande);
+
+
+
+
+
+
+                Assert.Equal(firstCommandePrice * 10, restaurant.revenue());
+            }
+
+            [Fact(DisplayName = "V3")]
+            void Serveur_RestaurantV3()
+            {
+                // Given
+                double firstCommandePrice = 100;
+                int nbrServeur = 10;
+                int nbrRestaurant = 3;
+
+                var franchise = new Franchise("Corp michelin");
+                franchise.createRestaurant(nbrServeur, nbrRestaurant);
+
+
+                foreach (var element in franchise.listesRestaurant)
+                {
+                    Client client = new Client("Srah");
+                    List<Commande> commande = new List<Commande>();
+                    commande.Add(new Commande(1, client, firstCommandePrice));
+
+                    element.implementeServeur(commande);
+                }
+
+
+
+
+                Assert.Equal(firstCommandePrice * 10 * 3, franchise.revenue());
+            }
+
+
+            /*   [Fact(DisplayName = "debut service")]
+               void Serveur_RestaurantVdebutserv()
+               {
+                   // Given
+                   double firstCommandePrice = 100;
+                   int nbrServeur = 10;
+                   int nbrRestaurant = 3;
+
+                   var restaurant = new Restaurant("michelin");
+                   List<int> createListTable = new List<int> { 1,2,3};
+                   restaurant.listTable = createListTable;
+
+                   var serv = new Serveur("val");
+                   //List<int> createListTable1 = new List<int>();
+                   //  create
+                   serv.listTable.Add(restaurant.listTable[0]);
+               //    serv.listTable =createListTable1;
+
+                    //   .listTable.Add(restaurant.listTable[0])
+                   restaurant.listServeur.Add(serv);
+
+
+
+                   Assert.Equal(firstCommandePrice * 10 * 3, franchise.revenue());
+               }
+            */
+            [Fact(DisplayName = "debut service")]
+            void Serveur_RestaurantVdebutserv()
+            {
+                // Given
+                double firstCommandePrice = 100;
+                int nbrServeur = 10;
+                int nbrRestaurant = 3;
+
+                var restaurant = new Restaurant("michelin");
+
+                List<int> createListTable = new List<int> { 1, 2, 3 };
+                restaurant.listTable = createListTable;
+
+                // var serv = new Serveur("val");
+                //List<int> createListTable1 = new List<int>();
+                //  create
+                //    serv.listTable.Add(restaurant.listTable[0]);
+                //    serv.listTable =createListTable1;
+
+                //   .listTable.Add(restaurant.listTable[0])
+                //   restaurant.listServeur.Add(serv);
+                restaurant.startService(createListTable);
+
+
+
+                Assert.Equal(createListTable, restaurant.maitreHotel.listTable);
+            }
+
+
+
+
+            [Fact(DisplayName = "debut serviceServeur")]
+            void Serveur_RestaurantVdebutservServeur()
+            {
+                // Given
+                double firstCommandePrice = 100;
+                int nbrServeur = 10;
+                int nbrRestaurant = 3;
+
+                var restaurant = new Restaurant("michelin");
+
+                List<int> createListTable = new List<int> { 1, 2, 3 };
+                restaurant.listTable = createListTable;
+
+                //                var serv = new Serveur("val");
+                //List<int> createListTable1 = new List<int>();
+                //  create
+                //              serv.listTable.Add(restaurant.listTable[0]);
+                //    serv.listTable =createListTable1;
+
+                //   .listTable.Add(restaurant.listTable[0])
+                //            restaurant.listServeur.Add(serv);
+                restaurant.startService(createListTable);
+                Assert.Equal(createListTable, restaurant.maitreHotel.listTable);
+            }
+
 
         }
     }
