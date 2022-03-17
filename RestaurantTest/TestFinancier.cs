@@ -260,6 +260,33 @@ namespace RestaurantTest
             }
 
 
+
+            [Fact(DisplayName = "debut serviceServeur")]
+            void Serveur_RestaurantVdebutservServeur111()
+            {
+                // Given
+                double firstCommandePrice = 100;
+                int nbrServeur = 10;
+                int nbrRestaurant = 3;
+
+                var restaurant = new Restaurant("michelin");
+
+                List<int> createListTable = new List<int> { 1, 2, 3 };
+                restaurant.listTable = createListTable;
+
+                //                var serv = new Serveur("val");
+                //List<int> createListTable1 = new List<int>();
+                //  create
+                //              serv.listTable.Add(restaurant.listTable[0]);
+                //    serv.listTable =createListTable1;
+
+                //   .listTable.Add(restaurant.listTable[0])
+                //            restaurant.listServeur.Add(serv);
+                restaurant.startService(createListTable);
+                Assert.Equal(createListTable, restaurant.maitreHotel.listTable);
+            }
+
+
         }
     }
 }

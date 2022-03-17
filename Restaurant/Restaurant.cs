@@ -13,9 +13,17 @@ namespace LeRestaurant
 
 
         public double chiffreAffaires { get; set; }
-        public List<Serveur> listServeur = new List<Serveur>();
+        private List<Serveur> listServeur = new List<Serveur>();
         public List<int> listTable = new List<int>();
         public MaitreHotel maitreHotel = new MaitreHotel("Steph");
+
+        public void setServuer(List<Serveur> listServeurs)
+        {
+            if (service == false)
+            {
+                listServeur = listServeur;
+            }
+        }
 
         public Restaurant(string nom)
         {
