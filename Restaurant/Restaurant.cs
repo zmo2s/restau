@@ -13,7 +13,7 @@ namespace LeRestaurant
 
 
         public double chiffreAffaires { get; set; }
-        private List<Serveur> listServeur = new List<Serveur>();
+        public List<Serveur> listServeur = new List<Serveur>();
         public List<int> listTable = new List<int>();
         public MaitreHotel maitreHotel = new MaitreHotel("Steph");
 
@@ -88,6 +88,16 @@ namespace LeRestaurant
             service = true;
             listTable = listTables;
 
+            this.maitreHotel.listTable = listTable;
+            // this.listTable = 
+        }
+
+        public void startService(List<int> listTables, List<Serveur> serveur)
+        {
+            service = true;
+            listTable = listTables;
+            this.listServeur.Add(serveur[0]);
+            this.listServeur.RemoveAt(0);
             this.maitreHotel.listTable = listTable;
             // this.listTable = 
         }

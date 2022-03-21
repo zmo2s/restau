@@ -203,7 +203,7 @@ namespace RestaurantTest
                    Assert.Equal(firstCommandePrice * 10 * 3, franchise.revenue());
                }
             */
-            [Fact(DisplayName = "debut service")]
+            [Fact(DisplayName = "debut service1")]
             void Serveur_RestaurantVdebutserv()
             {
                 // Given
@@ -272,7 +272,10 @@ namespace RestaurantTest
                 var restaurant = new Restaurant("michelin");
 
                 List<int> createListTable = new List<int> { 1, 2, 3 };
+                List<Serveur> listserveur = new List<Serveur> { new Serveur("remi") };
+
                 restaurant.listTable = createListTable;
+                restaurant.listServeur = listserveur;
 
                 //                var serv = new Serveur("val");
                 //List<int> createListTable1 = new List<int>();
