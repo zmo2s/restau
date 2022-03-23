@@ -13,6 +13,8 @@ namespace LeRestaurant
         public Commande commande { get; set; }
         public List<Commande> listCommandes = new List<Commande>();
         public List<int> listTable = new List<int>();
+        public List<Client> client= new List<Client>();
+        
         public Serveur()
         { }
         public Serveur(string nom)
@@ -32,6 +34,16 @@ namespace LeRestaurant
             return chiffreAffaires;
         }
 
-
+     public void commandeNonPayer(string name)
+        {
+            foreach(var element in listCommandes)
+            {
+                if(element.nom == name)
+                {
+                    element.payer = false;
+                    element.epingler = true;
+                }
+            }
+        }
     }
 }

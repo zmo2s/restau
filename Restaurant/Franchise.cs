@@ -11,6 +11,8 @@ namespace LeRestaurant
         public List<Restaurant> listesRestaurant = new List<Restaurant>();
         public string nom;
         public double chiffreAffaires { get; set; }
+        public Plat plat { get; set; }
+        public List<Plat> listPlat = new();
         public Franchise(string nom)
         {
             this.nom = nom;
@@ -50,6 +52,18 @@ namespace LeRestaurant
                 restaurant.createServeurs(nbrServeur);
                 listesRestaurant.Add(restaurant);
             }
+        }
+
+        public void modifierPlat(Plat plat)
+        {
+            if (plat.name != listesRestaurant[0].plat.name)
+                listesRestaurant[0].plat = plat;
+        }
+
+        public void addPlat(Plat plat)
+        {
+           
+                listesRestaurant[0].listPlat.Add(plat);
         }
     }
 }

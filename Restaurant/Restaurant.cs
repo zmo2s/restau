@@ -10,13 +10,19 @@ namespace LeRestaurant
     {
         public string nom { get; set; }
         public bool service { get; set; }
-
+        public bool statusFillaleFranchise = false;
+        public Plat plat { get; set; }
+        public List<Plat> listPlat = new();
 
         public double chiffreAffaires { get; set; }
         public List<Serveur> listServeur = new List<Serveur>();
         public List<int> listTable = new List<int>();
+        public List<int> listTableLibre = new List<int>();
         public MaitreHotel maitreHotel = new MaitreHotel("Steph");
-
+        public List<Commande> commandeTransmettre = new List<Commande>();
+        public List<Commande> listTacheCuisine = new List<Commande>();
+        public List<Client> listClient = new List<Client>();
+        
         public void setServuer(List<Serveur> listServeurs)
         {
             if (service == false)
@@ -87,19 +93,113 @@ namespace LeRestaurant
         {
             service = true;
             listTable = listTables;
+            listTableLibre = listTables;
 
             this.maitreHotel.listTable = listTable;
             // this.listTable = 
         }
 
-        public void startService(List<int> listTables, List<Serveur> serveur)
+        public void servicesServeurMaitreHotel(List<int> listTables, Serveur serveur)
+        {
+            if (service == true)
+            {
+                listServeur.Add(serveur);
+                listTable = listTables;
+                //  this.listServeur.Add(serveur[0]);
+                //  this.listServeur.RemoveAt(0);
+                int idTable = serveur.listTable[0];
+                var itemToRemove = listTable.First(item => item == idTable);
+                listTable.Remove(itemToRemove);
+                this.maitreHotel.listTable = listTable;
+            }
+            // this.listTable = 
+        }
+        public void startService()
         {
             service = true;
-            listTable = listTables;
-            this.listServeur.Add(serveur[0]);
-            this.listServeur.RemoveAt(0);
+        }
+
+        public void modifServeur(Serveur serveur)
+        {
+            if (service == false)
+            {
+               // List<Serveur> list = listServeur;
+                foreach (var element in listServeur)
+                {
+                    if(serveur.nom == element.nom)
+                    {
+                        element.listTable = new List<int> { 1 };
+                    }
+                }
+            }
+        }
+
+        public void serviceEnd()
+        {
+            service = false;
+        }
+
+        public void tableADeuxServeur(Serveur serveur)
+        {
+            if (service == false)
+            {
+                /* listTable = listTables;
+                 //  this.listServeur.Add(serveur[0]);
+                 //  this.listServeur.RemoveAt(0);
+                 int idTable = serveur.listTable[0];
+                 var itemToRemove = listTable.Single(r => r == idTable);
+                 listTable.Remove(itemToRemove);
+                 this.maitreHotel.listTable = listTable;
+                */
+               // var itemToRemove = listServeur.Where(r => r.listTable == );
+            }
+        }
+
+        public void containsAlreadyTable()
+        {
+            bool alreadyTable = false;
+
+           for(int i=0; i< listServeur.Count-1; i++)
+            {
+                if(listServeur[i].listTable.Contains(listServeur[i+1].listTable[0]))
+                {
+                    alreadyTable = true;
+                 
+                }
+            }
+
+            //listServeur[0].listTable.RemoveAt(0);
+            //listServeur[1].listTable.Add(listServeur[0].listTable);
+           
+            listServeur[1].listTable = null;
+            listTable.RemoveAt(0);
             this.maitreHotel.listTable = listTable;
-            // this.listTable = 
+        }
+
+        public void estTransmise()
+        {
+            commandeTransmettre.RemoveAt(0);
+        }
+
+        public void mettreClientAuneTable(Client client)
+        {
+            var index = listTableLibre.IndexOf(client.table);
+            if (index > -1)
+                listTableLibre.RemoveAt(index);
+           
+        }
+
+        public void modifierPlat(Franchise franchise)
+        {
+            plat = franchise.plat;
+        }
+
+        public void prendCommandeNourriture(Commande commande)
+        {
+            listServeur[0].commande = commande;
+            if(commande.nourriture)
+            listTacheCuisine.Add(commande);
+
         }
     }
 }

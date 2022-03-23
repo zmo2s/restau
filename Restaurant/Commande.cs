@@ -11,12 +11,46 @@ namespace LeRestaurant
         public int idCommande;
         public Client client;
         public double prix;
+        public string nom;
+        public bool payer= false;
+        public bool epingler = false;
+        public DateTime date;
+        public string description;
+        public bool transmise = false;
+        public bool nourriture;
+        public bool boisson;
+      
 
         public Commande(int idCommande, Client client, double prix)
         {
             this.idCommande = idCommande;
             this.client = client;
             this.prix = prix;
+        }
+        public Commande(string nom)
+        {
+            this.nom = nom;
+        }
+        public Commande(string nom,DateTime date)
+        {
+            this.nom = nom;
+            this.date = date;
+        }
+
+
+        public void commandeNonPayer()
+        {
+            payer = false;
+        }
+
+        public void AddDate(DateTime dateTime)
+        {
+
+            System.TimeSpan diff = DateTime.Now.Subtract(dateTime);
+           if (diff.TotalDays >=15 )
+            {
+                description = "à transmettre gendarmerie";
+            }
         }
     }
 }
