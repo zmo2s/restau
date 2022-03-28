@@ -19,6 +19,7 @@ namespace LeRestaurant
         public bool transmise = false;
         public bool nourriture;
         public bool boisson;
+        List<string> listeBoisson = new List<string>();
       
 
         public Commande(int idCommande, Client client, double prix)
@@ -35,6 +36,13 @@ namespace LeRestaurant
         {
             this.nom = nom;
             this.date = date;
+        }
+
+        public Commande(string nom, DateTime date,List<string> listBoisson)
+        {
+            this.nom = nom;
+            this.date = date;
+            this.listeBoisson = listBoisson;
         }
 
 

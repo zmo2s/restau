@@ -13,28 +13,29 @@ namespace RestaurantTest
         public void Test1()
         {
             [Fact(DisplayName = "Étant donné un nouveau serveur, alors son chiffre d'affaire est nul")]
-            void Serveur_Initial()
+            void ChiffreAffaireNull()
             {
+                //Arrange
                 Serveur serveur = new Serveur("Henri");
-
+                //Act
                 var chiffreAffaires = serveur.chiffreAffaires;
-
+                //Assert
                 Assert.Equal(0, chiffreAffaires);
             }
 
             [Fact(DisplayName = "Étant donné un nouveau serveur, " +
                           "Quand un client passe une commande, " +
                           "Alors son chiffre d'affaire est augmenté de son montant.")]
-            void Serveur_Increment()
+            void Serveur_IncrementChiffreAffaire()
             {
+                //Arrange
                 double montantCommande = 64.5;
                 var client = new Client("jack");
                 var commande = new Commande(1, client, montantCommande);
                 var serveur = new Serveur("henri", commande);
+                //Act
                 serveur.chiffreAffaires = serveur.commande.prix;
-
-
-
+                //Assert
                 Assert.Equal(montantCommande, serveur.chiffreAffaires);
             }
 
@@ -56,81 +57,13 @@ namespace RestaurantTest
 
                 Assert.Equal(firstCommandePrice + SecondCommandePrice, serveur.revenue());
             }
-
-
-            /*    [Fact(DisplayName = ".")]
-                void Serveur_Restaurant()
-                {
-                    // Given
-                    double firstCommandePrice = 64.5;
-
-                    var client = new Client("henri");
-                    var firstCommande = new Commande(1, client, firstCommandePrice);
-                    var serveur = new Serveur("Paul");
-                    var restaurant = new Restaurant("Michelin");
-                    serveur.listCommandes.Add(firstCommande);
-
-
-
-                    Assert.Equal(firstCommandePrice , serveur.revenue());
-                }*/
-            /*
-                        [Fact(DisplayName = "..")]
-                        void Serveur_Restaurant1()
-                        {
-                            // Given
-                            double firstCommandePrice = 100;
-
-
-                            var restaurant = new Restaurant("Michelin");
-                            restaurant.createServeur(10, firstCommandePrice);
-
-
-
-
-
-                            Assert.Equal(firstCommandePrice * 10, restaurant.revenue());
-                        }
-
-                        [Fact(DisplayName = "..")]
-                        void Serveur_Restaurant2()
-                        {
-                            // Given
-                            double firstCommandePrice = 100;
-
-
-                            var restaurant = new Restaurant("Michelin");
-                            restaurant.createServeur(10, firstCommandePrice);
-
-
-
-
-
-                            Assert.Equal(firstCommandePrice * 10, restaurant.revenue());
-                        }
-
-                        [Fact(DisplayName = "..")]
-                        void Serveur_Restaurant3()
-                        {
-                            //Etant donner
-                            double firstCommandePrice = 100;
-                            var franchise = new Franchise("Michelin");
-                            //quand
-                            int nbrRestau = 3;
-                            int nbrServeur = 10;
-                            franchise.createRestaurant(nbrServeur, 100, nbrRestau);
-                            //alors
-                            Assert.Equal(firstCommandePrice * 10 * 3, franchise.revenue());
-                        }
-
-                        */
             [Fact(DisplayName = "SCOPE Restaurant ÉTANT" +
                 " DONNÉ un restaurant ayant X serveurs QUAND " +
                 "tous les serveurs prennent une commande " +
                 "d'un montant Y ALORS le chiffre d'affaires " +
                 "du restaurant est X * Y CAS(X = 0; X = 1;" +
                 " X = 2; X = 100) CAS(Y = 1.0)")]
-            void Serveur_RestaurantV2()
+            void RestaurantCalculateCA()
             {
                 // Given
                 double firstCommandePrice = 100;
@@ -147,21 +80,16 @@ namespace RestaurantTest
 
                 restaurant.implementeServeur(commande);
 
-
-
-
-
-
                 Assert.Equal(firstCommandePrice * 10, restaurant.revenue());
             }
 
-            [Fact(DisplayName = "	SCOPE Franchise ÉTANT DONNÉ " +
+            [Fact(DisplayName = "SCOPE Franchise ÉTANT DONNÉ " +
                 "une franchise ayant X restaurants de Y serveurs chacuns " +
                 "QUAND tous les serveurs prennent une commande d'un montant " +
                 "Z ALORS le chiffre d'affaires de la franchise est X * Y * Z" +
                 " CAS(X = 0; X = 1; X = 2; X = 1000 CAS(Y = 0; Y = 1; Y = 2;" +
                 " Y = 1000) CAS(Z = 1.0)")]
-            void Serveur_RestaurantV3()
+            void FranchiseCalculateCA()
             {
                 // Given
                 double firstCommandePrice = 100;
@@ -186,38 +114,10 @@ namespace RestaurantTest
 
                 Assert.Equal(firstCommandePrice * 10 * 3, franchise.revenue());
             }
-
-
-            /*   [Fact(DisplayName = "debut service")]
-               void Serveur_RestaurantVdebutserv()
-               {
-                   // Given
-                   double firstCommandePrice = 100;
-                   int nbrServeur = 10;
-                   int nbrRestaurant = 3;
-
-                   var restaurant = new Restaurant("michelin");
-                   List<int> createListTable = new List<int> { 1,2,3};
-                   restaurant.listTable = createListTable;
-
-                   var serv = new Serveur("val");
-                   //List<int> createListTable1 = new List<int>();
-                   //  create
-                   serv.listTable.Add(restaurant.listTable[0]);
-               //    serv.listTable =createListTable1;
-
-                    //   .listTable.Add(restaurant.listTable[0])
-                   restaurant.listServeur.Add(serv);
-
-
-
-                   Assert.Equal(firstCommandePrice * 10 * 3, franchise.revenue());
-               }
-            */
             [Fact(DisplayName = "ÉTANT DONNE un restaurant " +
                 "ayant 3 tables QUAND le service commence  " +
                 "elles sont toutes affectées au Maître d'Hôtel")]
-            void Serveur_RestaurantVdebutserv()
+            void debutService()
             {
                 // Given
                 double firstCommandePrice = 100;
@@ -229,14 +129,6 @@ namespace RestaurantTest
                 List<int> createListTable = new List<int> { 1, 2, 3 };
                 restaurant.listTable = createListTable;
 
-                // var serv = new Serveur("val");
-                //List<int> createListTable1 = new List<int>();
-                //  create
-                //    serv.listTable.Add(restaurant.listTable[0]);
-                //    serv.listTable =createListTable1;
-
-                //   .listTable.Add(restaurant.listTable[0])
-                //   restaurant.listServeur.Add(serv);
                 restaurant.startService(createListTable);
 
 
@@ -250,7 +142,7 @@ namespace RestaurantTest
             [Fact(DisplayName = "ÉTANT DONNE un restaurant ayant " +
                 "3 tables QUAND le service commence ALORS elles sont" +
                 " toutes affectées au Maître d'Hôtel")]
-            void Serveur_RestaurantVdebutservServeur()
+            void TableAffecterMaitreHotel()
             {
                 // Given
                 double firstCommandePrice = 100;
@@ -262,14 +154,7 @@ namespace RestaurantTest
                 List<int> createListTable = new List<int> { 1, 2, 3 };
                 restaurant.listTable = createListTable;
 
-                //                var serv = new Serveur("val");
-                //List<int> createListTable1 = new List<int>();
-                //  create
-                //              serv.listTable.Add(restaurant.listTable[0]);
-                //    serv.listTable =createListTable1;
-
-                //   .listTable.Add(restaurant.listTable[0])
-                //            restaurant.listServeur.Add(serv);
+ 
                 restaurant.startService(createListTable);
                 Assert.Equal(createListTable, restaurant.maitreHotel.listTable);
             }
@@ -280,7 +165,7 @@ namespace RestaurantTest
                 "une affectée à un serveur QUAND le service débute ALORS cette" +
                 " table est toujours affectée au serveur et les deux " +
                 "autres au maître d'hôtel")]
-            void Serveur_RestaurantVdebutservServeur111()
+            void UnetableAffecterAUnServeurDeuxMaitreHotel()
             {
                 // Given
                 double firstCommandePrice = 100;
@@ -290,24 +175,13 @@ namespace RestaurantTest
                 var restaurant = new Restaurant("michelin");
 
                 List<int> createListTable = new List<int> { 1, 2, 3 };
-
-                // List<Serveur> listserveur = new List<Serveur> { new Serveur("remi") };
                 Serveur serveur = new Serveur("Remi");
                 int idTable = 1;
                 serveur.listTable.Add(createListTable[idTable - 1]);
 
 
                 restaurant.listTable = createListTable;
-                //  restaurant.listServeur = listserveur;
 
-                //                var serv = new Serveur("val");
-                //List<int> createListTable1 = new List<int>();
-                //  create
-                //              serv.listTable.Add(restaurant.listTable[0]);
-                //    serv.listTable =createListTable1;
-
-                //   .listTable.Add(restaurant.listTable[0])
-                //            restaurant.listServeur.Add(serv);
                 restaurant.startService();
                 restaurant.servicesServeurMaitreHotel(createListTable, serveur);
 
@@ -323,7 +197,7 @@ namespace RestaurantTest
                 "une affectée à un serveur QUAND le service débute " +
                 "ALORS il n'est pas possible de modifier le serveur " +
                 "affecté aux tables")]
-            void Serveur_RestaurantVdebutservServeur1111()
+            void ImmuableServeur()
             {
                 // Given
                 double firstCommandePrice = 100;
@@ -360,7 +234,7 @@ namespace RestaurantTest
              "QUAND le service se termine" +
              "ET que cette table est affectée à un second serveur" +
              "ALORS la table éditée est affectée au serveur et les deux autres au maître d'hôtel")]
-            void Serveur_RestaurantVdebutservServeur11111()
+            void EditTable()
             {
                 // Given
                 double firstCommandePrice = 100;
@@ -410,7 +284,7 @@ namespace RestaurantTest
             [Fact(DisplayName = "ÉTANT DONNE un serveur ayant pris une commande " +
                 "QUAND il la déclare comme non - payée " +
                 "ALORS cette commande est marquée comme épinglée")]
-            void Serveur_RestaurantVdebutservServeur111111()
+            void CommandNotPay()
             {
                 var pierre = new Serveur("Pierre");
                 var commande = new Commande("n°1");
@@ -425,7 +299,7 @@ namespace RestaurantTest
                 " une commande QUAND elle date d'il y a au moins 15 jours" +
                 " ALORS cette commande est marquée comme à transmettre " +
                 "gendarmerie")]
-            void Serveur_RestaurantVdebutservServeur1111111()
+            void delay15daysPolice()
             {
                 var pierre = new Serveur("Pierre");
                 var commande = new Commande("n°1");
@@ -439,8 +313,10 @@ namespace RestaurantTest
             }
 
 
-            [Fact(DisplayName = "ÉTANT DONNE une commande à transmettre gendarmerie QUAND on consulte la liste des commandes à transmettre du restaurant ALORS elle y figure")]
-            void Serveur_RestaurantVdebutservServeur11111111()
+            [Fact(DisplayName = "ÉTANT DONNE une commande à transmettre " +
+                "gendarmerie QUAND on consulte la liste des commandes à " +
+                "transmettre du restaurant ALORS elle y figure")]
+            void ListCommandeGendarmerie()
             {
                 var pierre = new Serveur("Pierre");
                 var commande = new Commande("n°1");
@@ -457,12 +333,12 @@ namespace RestaurantTest
 
 
 
-            [Fact(DisplayName = "	ÉTANT DONNE une commande à " +
+            [Fact(DisplayName = "ÉTANT DONNE une commande à " +
                 "transmettre gendarmerie QUAND elle est marquée " +
                 "comme transmise à la gendarmerie ALORS elle ne " +
                 "figure plus dans la liste des commandes à" +
                 " transmettre du restaurant")]
-            void Serveur_RestaurantVdebutservServeur111111111()
+            void DeleteItemListRestaurant()
             {
                 var pierre = new Serveur("Pierre");
                 var commande = new Commande("n°1");
@@ -486,7 +362,7 @@ namespace RestaurantTest
                 " QUAND un client est affecté à une table ALORS" +
                 " cette table n'est plus sur la liste" +
                 " des tables libres du restaurant")]
-            void Serveur_RestaurantVdebutservServeur1111111111()
+            void ListTableLibre()
             {
 
                 var restaurant = new Restaurant();
@@ -506,13 +382,13 @@ namespace RestaurantTest
 
 
 
-            [Fact(DisplayName = "	ÉTANT DONNE un restaurant ayant " +
+            [Fact(DisplayName = "ÉTANT DONNE un restaurant ayant " +
            "le statut de filiale d'une franchise ET " +
            "une franchise définissant un menu ayant un" +
            " plat QUAND la franchise modifie le prix du plat " +
            "ALORS le prix du plat dans le menu du restaurant " +
            "est celui défini par la franchise")]
-            void Serveur_RestaurantVdebutservServeur11111111111()
+            void DifferrentMealFranchiseRestaurant()
             {
 
                 var restaurant = new Restaurant();
@@ -530,13 +406,13 @@ namespace RestaurantTest
 
 
 
-            [Fact(DisplayName = "	ÉTANT DONNE un restaurant" +
+            [Fact(DisplayName = "ÉTANT DONNE un restaurant" +
                 " appartenant à une franchise et " +
                 "définissant un menu ayant un plat ET une franchise" +
                 " définissant un menu ayant le même plat" +
                 " QUAND la franchise modifie le prix du plat " +
                 "ALORS le prix du plat dans le menu du restaurant reste inchangé")]
-            void Serveur_RestaurantVdebutservServeur111111111111()
+            void SameMealRestaurantFranchise()
             {
 
                 var restaurant = new Restaurant();
@@ -554,13 +430,13 @@ namespace RestaurantTest
             }
 
 
-            [Fact(DisplayName = "	ÉTANT DONN un restaurant appartenant" +
+            [Fact(DisplayName = "ÉTANT DONN un restaurant appartenant" +
                 " à une franchise et définissant" +
                 " un menu ayant un plat QUAND la franchise ajoute " +
                 "un nouveau plat ALORS la carte du restaurant " +
                 "propose le premier plat au prix du restaurant " +
                 "et le second au prix de la franchise")]
-            void Serveur_RestaurantVdebutservServeur1111111111111()
+            void FranchiseChangePriceRestaurant()
             {
 
                 var restaurant = new Restaurant();
@@ -583,7 +459,7 @@ namespace RestaurantTest
                 "restaurant QUAND il prend une commande de nourriture" +
                 " ALORS cette commande apparaît dans la liste de tâches" +
                 " de la cuisine de ce restaurant")]
-            void Serveur_RestaurantVdebutservServeur11111111111111()
+            void ListCommandMeal()
             {
 
                 var pierre = new Serveur("Pierre");
@@ -603,7 +479,7 @@ namespace RestaurantTest
             [Fact(DisplayName = "ÉTANT DONNE un serveur dans un restaurant " +
                 "QUAND il prend une commande de boissons ALORS cette commande" +
                 " n apparaît pas dans la liste de tâches de la cuisine de ce restaurant")]
-            void Serveur_RestaurantVdebutservServeur111111111111111()
+            void DrinksNotInListCooking()
             {
 
                 var pierre = new Serveur("Pierre");
