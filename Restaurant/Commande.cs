@@ -40,9 +40,13 @@ namespace LeRestaurant
 
         public Commande(string nom, DateTime date,List<string> listBoisson)
         {
-            this.nom = nom;
+            if (date < new DateTime(2022, 3, 28, 1, 59, 0))
+            {
+                this.nom = nom;
             this.date = date;
             this.listeBoisson = listBoisson;
+
+            }
         }
 
 

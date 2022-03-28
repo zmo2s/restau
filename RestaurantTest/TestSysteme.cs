@@ -12,17 +12,17 @@ namespace RestaurantTest
     {
         [Fact(DisplayName = "Test système changement d'heure " +
             "les boissons contenant plus de 15 % d'alchool ne peuvent etre" +
-            "servi après 21h ")]
+            "servi après 1h59 donc la commande n'es pas prise en compte")]
         void TestSystemeChangementheure()
         {
             var pierre = new Serveur("Pierre");
             var restaurant = new Restaurant();
             restaurant.listServeur.Add(pierre);
 
-
-
-            var commande = new Commande("n°1",new DateTime(2022, 3, 28, 21, 47, 0));
-            commande.boisson = true;
+            List<string> listBoisson = new();
+            listBoisson.Add("Vodka");
+            var commande = new Commande("n°33",new DateTime(2022, 3, 28, 2, 59, 0),listBoisson);
+            Assert.Null( commande.nom);
         }
     }
 }
